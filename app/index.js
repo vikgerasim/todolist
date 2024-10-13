@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import React from 'react';
+import { SafeAreaView } from 'react-native';
+import Todoform from './todoform';
+import Todolist from './todolist';
 
-export default class index extends Component {
-  render() {
-    return (
-      <View>
-        <Text>textInComponent </Text>
-      </View>
-    )
-  }
+const Index = () => {
+  return (
+    <SafeAreaView>
+      <Todolist />
+      <Todoform />
+    </SafeAreaView>
+  );
 }
 
-const styles = StyleSheet.create({})
+export default Index;
