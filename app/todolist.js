@@ -5,9 +5,9 @@ const Todolist = ({ tasks }) => {
   return (
     <ScrollView>
       {tasks.map((task, index) => (
-        <Pressable>
+        <Pressable key={index}>
           <View style={[styles.task, styles.incomplete]}>
-            <Text key={index} style={styles.taskText}>
+            <Text style={styles.taskText}>
               {task}
             </Text>
           </View>
