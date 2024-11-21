@@ -1,46 +1,75 @@
-import React, { useState } from "react";
-import { SafeAreaView, View, Text } from "react-native";
-import Todoform from "./todoform";
-import Todolist from "./todolist";
-
-
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import React from 'react';
+import { Link } from 'expo-router';
 
 const Index = () => {
-  const [tasks, setTasks] = useState(["Do laundry", "Go to gym", "Walk dog"]);
-
-  const addTask = (newTask) => {
-    if (newTask === "") {
-      alert("Task cannot be empty!");
-    } else if (!tasks.includes(newTask)) {
-      setTasks([...tasks, newTask]);
-    } else {
-      alert("Task already exists!");
-    }
-  };
-
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#f0f4f8" }}>
-      <View style={{ padding: 20, backgroundColor: "#008cee" }}>
-        <Text
-          style={{
-            color: "#ffffff",
-            fontSize: 24,
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
-        >
-          My Todo App
-        </Text>
-      </View>
-      <Text
-        style={{ textAlign: "center", margin: 10, color: "#333" }}
+    <View style={styles.container}>
+      <ImageBackground
+        source={require('../assets/pexels-breakingpic.jpg')}
+        style={styles.imageBackground}
       >
-        {tasks.length} {tasks.length === 1 ? "Task" : "Tasks"}
-      </Text>
-      <Todolist tasks={tasks} />
-      <Todoform addTask={addTask} />
-    </SafeAreaView>
+        <View style={styles.card}>
+          <Text style={styles.text}>Welcome!</Text>
+          <Link href="/todoapp" style={styles.button}>
+            <Text style={styles.buttonText}>Go to App</Text>
+          </Link>
+          <Link href="/about" style={styles.button}>
+            <Text style={styles.buttonText}>About</Text>
+          </Link>
+        </View>
+      </ImageBackground>
+    </View>
   );
 };
 
 export default Index;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  imageBackground: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  card: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+    borderRadius: 15,
+    width: '60%',
+    padding: 20,
+    alignItems: 'center',
+    elevation: 5, 
+    shadowColor: '#000', 
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+  },
+  text: {
+    color: 'black',
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
+  button: {
+    backgroundColor: '#007BFF',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginTop: 10,
+    width: '80%',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+});
